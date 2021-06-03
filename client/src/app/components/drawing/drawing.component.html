@@ -1,0 +1,40 @@
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<div id="canvas-container">
+    <canvas id="canvas" #baseCanvas [attr.width]="width" [attr.height]="height"></canvas>
+    <canvas id="backgroundMediatorCanvas" #backgroundMediatorCanvas [attr.width]="width" [attr.height]="height"></canvas>
+    <canvas id="previewLayer" #previewCanvas [attr.width]="width" [attr.height]="height"> </canvas>
+    <canvas id="backgroundLayer" #backgroundCanvas [attr.width]="this.windowSize.x" [attr.height]="this.windowSize.y"></canvas>
+    <div
+        *ngIf="this.resizeServiceCommand.mouseDown"
+        class="preview"
+        [style.height.px]="this.resizeServiceCommand.preview.y"
+        [style.width.px]="this.resizeServiceCommand.preview.x"
+        (mousemove)="this.onMouseMove($event)"
+        (mouseup)="this.onMouseUp($event)"
+    ></div>
+    <canvas id="grid" #gridCanvas [attr.width]="width" [attr.height]="height"> </canvas>
+
+    <button
+        class="resizer"
+        id="bottomAnchor"
+        [style.top.px]="this.resizeServiceCommand.bottomHandle.y"
+        [style.left.px]="this.resizeServiceCommand.bottomHandle.x"
+        (mousedown)="this.resizeServiceCommand.startResize($event); this.resizeServiceCommand.isBottom = true"
+    ></button>
+
+    <button
+        class="resizer"
+        id="sideAnchor"
+        [style.top.px]="this.resizeServiceCommand.sideHandle.y"
+        [style.left.px]="this.resizeServiceCommand.sideHandle.x"
+        (mousedown)="this.resizeServiceCommand.startResize($event); this.resizeServiceCommand.isSide = true"
+    ></button>
+
+    <button
+        class="resizer"
+        id="cornerAnchor"
+        [style.top.px]="this.resizeServiceCommand.cornerHandle.y"
+        [style.left.px]="this.resizeServiceCommand.cornerHandle.x"
+        (mousedown)="this.resizeServiceCommand.startResize($event); this.resizeServiceCommand.isCorner = true"
+    ></button>
+</div>

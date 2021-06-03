@@ -1,0 +1,77 @@
+#saveButton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.cancel {
+    background-color: #fc463d;
+    margin-right: 10px;
+    border-radius: 0%;
+}
+
+.save {
+    background-color: rgb(107, 240, 206);
+    color: black;
+    border-radius: 0%;
+}
+
+::ng-deep.mat-dialog-container {
+    background-color: rgba(83, 101, 119) !important;
+}
+
+div {
+    color: white;
+}
+
+#tag-menu {
+    padding-top: 20px;
+}
+
+.tag-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#tag-buttons-remove {
+    width: 1px;
+    margin-right: 10px;
+    border-radius: 0%;
+    background-color: #ff7a73;
+    color: rgba(83, 101, 119);
+}
+
+#tag-buttons-add {
+    width: 1px;
+    border-radius: 0%;
+    background-color: rgb(197, 243, 231);
+    color: rgba(83, 101, 119);
+}
+
+::ng-deep .mat-form-field-label {
+    color: rgb(189, 202, 216) !important;
+}
+
+::ng-deep .mat-form-field-label- {
+    color: rgb(189, 202, 216) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: rgb(142, 168, 194);
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: rgb(142, 168, 194) !important;
+}
+
+.spinner {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: rgb(107, 240, 206);
+}

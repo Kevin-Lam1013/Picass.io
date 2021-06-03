@@ -1,0 +1,57 @@
+<div class="export-menu">
+    <form [formGroup]="exportForm" name="exportForm">
+        <div id="fileInformations">
+            <mat-form-field id="fileNameForm" MatFormFieldControl="fileNameControl">
+                <mat-label>Nom du fichier </mat-label>
+                <input
+                    matInput
+                    name="drawingTitle"
+                    autocomplete="off"
+                    [formControl]="fileNameControl"
+                    (focus)="disableShortcut()"
+                    (blur)="enableShortcut()"
+                />
+                <mat-error *ngIf="fileNameControl.invalid && fileNameControl.touched">Entrez un nom!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Format de fichier</mat-label>
+                <mat-select [formControl]="fileExtentionControl">
+                    <mat-option value="png">PNG</mat-option>
+                    <mat-option value="jpeg">JPG</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Destination de l'exportation</mat-label>
+                <mat-select [formControl]="fileDestinationControl">
+                    <mat-option value="local">Localement</mat-option>
+                    <mat-option value="imgur">IMGUR</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <h3>Filtres:</h3>
+            <mat-radio-group class="filters" (change)="applyFilter()" [formControl]="filterControl" aria-label="Filtres: ">
+                <mat-radio-button value="none"> aucun filtre</mat-radio-button>
+                <mat-radio-button value="invert(100%)"> inversion complète des couleurs</mat-radio-button>
+                <mat-radio-button value="grayscale(100%)"> gris</mat-radio-button>
+                <mat-radio-button value="sepia(100%)"> sepia</mat-radio-button>
+                <mat-radio-button value="hue-rotate(90deg)"> rotation 90 degrés des couleurs</mat-radio-button>
+                <mat-radio-button value="brightness(160%)"> luminosité </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div id="canvas">
+            <canvas #filterPreviewCanvas [width]="500" [height]="400"></canvas>
+        </div>
+
+        <a #downloadLink href="" download=""> </a>
+
+        <div id="buttons">
+            <button #cancel mat-raised-button color="accent" mat-dialog-close class="cancel">Annuler</button>
+            <button (click)="exportDrawing()" mat-raised-button color="primary" mat-dialog-close class="export">Exporter</button>
+        </div>
+    </form>
+</div>

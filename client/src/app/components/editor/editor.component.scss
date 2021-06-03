@@ -1,0 +1,51 @@
+.container {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.drawing-container {
+    overflow: auto;
+    flex: 1 1 auto;
+    position: relative;
+    background-image: url('../main-page/bg.jpg');
+    background-size: 12%;
+    height: 100vh;
+    width: auto;
+    background-repeat: repeat-x repeat-y;
+    z-index: 0;
+}
+
+.drawing {
+    display: grid;
+    width: min-content;
+    outline: none;
+}
+
+.drawing-container::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+}
+
+.drawing-container::-webkit-scrollbar-track {
+    background: rgb(38, 46, 54);
+}
+
+.drawing-container::-webkit-scrollbar-thumb {
+    background-color: rgb(109, 130, 151);
+    border-radius: 3px;
+}
+
+.drawing-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(197, 243, 231);
+    transition: 0.3s;
+}
+
+.drawing-container::-webkit-scrollbar-thumb:active {
+    background-color: rgb(107, 240, 206);
+}
+
+.drawing-container::-webkit-scrollbar-corner {
+    background: rgb(38, 46, 54);
+}

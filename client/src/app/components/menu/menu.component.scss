@@ -1,0 +1,22 @@
+button {
+    display: block;
+    font-size: 50px;
+    background-color: transparent;
+    border: none;
+    color: rgb(95, 121, 143);
+    height: 60px;
+    width: 900px;
+    transition: 0.4s;
+    outline: none;
+    text-align: left;
+    font-family: 'Century Gothic';
+}
+
+button:hover {
+    display: block;
+    font-size: 60px;
+    width: 850px;
+    border: none;
+    color: rgb(161, 182, 201);
+    transition: 0.4s;
+}

@@ -1,0 +1,51 @@
+<div>
+    <!-- // form: source: https://www.youtube.com/watch?v=JeeUY6WaXiA -->
+    <form [formGroup]="drawingForm" autocomplete="off">
+        <h3>Nommez votre dessin:</h3>
+        <mat-form-field class="full">
+            <input
+                matInput
+                placeholder="nom du dessin"
+                formControlName="name"
+                (focus)="disableShortcut()"
+                (blur)="enableShortcut()"
+                onkeypress="return (event.keyCode!=13);"
+            />
+            <mat-error *ngIf="name.invalid && name.touched"> Le nom doit avoir une longueur entre 5 et 10 caractères </mat-error>
+        </mat-form-field>
+
+        <h3 id="tag-menu">Ajoutez des étiquettes:</h3>
+
+        <div formArrayName="tags">
+            <div *ngFor="let tags of tagsForms.controls; let i = index" [formGroupName]="i">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="tag"
+                        formControlName="tag"
+                        (focus)="disableShortcut()"
+                        (blur)="enableShortcut()"
+                        onkeypress="return (event.keyCode!=13);"
+                    />
+                    <mat-error *ngIf="tags.invalid && tags.touched"> Le tag ne doit contenir que des lettres </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="tag-buttons">
+            <button mat-raised-button color="accent" (click)="removeTags()" id="tag-buttons-remove">-</button>
+            <br />
+            <button mat-raised-button color="primary" (click)="addTags()" id="tag-buttons-add">+</button>
+        </div>
+        <div *ngIf="this.isLoading" class="spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+        <br />
+        <br />
+        <div id="saveButton">
+            <button mat-raised-button color="accent" mat-dialog-close class="cancel">Annuler</button>
+            <button mat-raised-button [disabled]="this.isLoading || drawingForm.invalid" (click)="save()" mat-button color="primary" class="save">
+                Sauvegarder
+            </button>
+        </div>
+    </form>
+</div>

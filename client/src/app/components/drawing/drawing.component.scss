@@ -1,0 +1,70 @@
+#backgroundLayer {
+    border: none;
+    z-index: 0;
+}
+
+canvas {
+    cursor: crosshair;
+    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#backgroundMediatorCanvas {
+    background-color: white;
+    z-index: -1;
+}
+
+#canvas {
+    z-index: 0;
+    overflow: auto;
+}
+
+#drawCanvas {
+    z-index: 1;
+}
+
+#grid {
+    z-index: 4;
+}
+
+#canvas-container {
+    position: absolute;
+}
+
+.preview {
+    border: 1px dotted;
+    position: absolute;
+    z-index: 3;
+}
+
+button {
+    width: 10px;
+    height: 15px;
+    border: 2px solid rgba(83, 101, 119);
+    border-radius: 50%;
+    background: rgb(127, 154, 180);
+    outline: none;
+}
+
+#bottomAnchor {
+    cursor: ns-resize;
+    position: absolute;
+    left: 500px;
+    top: 804px;
+}
+
+#sideAnchor {
+    cursor: ew-resize;
+    position: absolute;
+    left: 1003px;
+    top: 400px;
+}
+
+#cornerAnchor {
+    cursor: nwse-resize;
+    position: absolute;
+    left: 1003px;
+    top: 802px;
+}

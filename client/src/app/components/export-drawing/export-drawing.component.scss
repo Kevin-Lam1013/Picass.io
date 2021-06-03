@@ -1,0 +1,74 @@
+.export-menu {
+    background-color: rgba(83, 101, 119);
+    color: white;
+}
+
+#buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.cancel {
+    background-color: #fc463d;
+    margin-right: 10px;
+    border-radius: 0%;
+}
+
+.export {
+    background-color: rgb(107, 240, 206);
+    color: black;
+    border-radius: 0%;
+}
+
+#canvas {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+::ng-deep.mat-dialog-container {
+    background-color: rgba(83, 101, 119) !important;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 10px;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0 !important; /*click effect color change*/
+    background-color: rgb(107, 240, 206) !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgb(107, 240, 206) !important; /*inner circle color change*/
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(107, 240, 206) !important; /*outer ring color change*/
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-outer-circle {
+    border-color: rgb(189, 202, 216) !important; /*outer ring color change*/
+}
+
+::ng-deep .mat-form-field-label {
+    color: rgb(189, 202, 216) !important;
+}
+
+::ng-deep .mat-form-field-label- {
+    color: rgb(189, 202, 216) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: rgb(142, 168, 194);
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: rgb(142, 168, 194) !important;
+}
+
+mat-error {
+    color: rgb(240, 123, 107);
+}

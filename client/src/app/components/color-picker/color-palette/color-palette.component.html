@@ -1,0 +1,13 @@
+<!-- inspired by : https://malcoded.com/posts/angular-color-picker/ -->
+<div>
+    <canvas
+        #canvas
+        class="color-palette"
+        width="165"
+        height="150"
+        (mousedown)="onLeftClickDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (contextmenu)="onRightClickDown($event)"
+    >
+    </canvas>
+</div>

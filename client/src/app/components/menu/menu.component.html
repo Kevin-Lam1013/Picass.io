@@ -1,0 +1,5 @@
+<div>
+    <button (click)="startNewDrawing()" routerLink="/editor">Créer un nouveau dessin</button>
+    <button *ngIf="isStarted()" routerLink="/editor">Continuer un dessin</button>
+    <button (click)="openCarousel()">Ouvrir le carrousel de dessins</button>
+</div>

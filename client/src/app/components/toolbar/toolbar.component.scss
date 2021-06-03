@@ -1,0 +1,174 @@
+#witdhInput {
+    margin-top: 15px;
+    opacity: 0.7;
+    font: black;
+}
+
+.slideContainer {
+    width: 70%;
+    margin-top: 250px;
+}
+
+.btns {
+    width: 100px;
+}
+
+#undo {
+    width: 50px;
+    cursor: pointer;
+}
+
+#undo:focus {
+    background-color: rgb(53, 64, 75);
+    color: white;
+}
+
+#redo:focus {
+    background-color: rgb(53, 64, 75);
+    color: white;
+}
+
+#redo {
+    width: 50px;
+    cursor: pointer;
+}
+
+.undoRedo {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+button {
+    display: block;
+    border: none;
+    background-color: rgb(53, 64, 75);
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 0%;
+    transition: 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+button:hover {
+    display: block;
+    border: none;
+    background-color: rgb(197, 243, 231);
+    color: black;
+    height: 50px;
+    border-radius: 0%;
+    font-size: 20px;
+}
+
+button.active {
+    outline: none;
+    background-color: rgb(107, 240, 206);
+    color: black;
+}
+
+#poly {
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    fill: white;
+}
+
+#poly:hover {
+    justify-content: center;
+    align-items: center;
+    fill: black;
+    svg {
+        position: absolute;
+        margin-top: -15px;
+        margin-left: -15px;
+        width: 30px;
+        height: 30px;
+        transition: 0.15s;
+    }
+}
+
+#poly.active {
+    fill: black;
+}
+
+svg {
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -11px;
+    width: 22px;
+    height: 22px;
+    transition: 0.15s;
+}
+
+.text-button {
+    font-size: x-large;
+}
+
+.text-button:hover {
+    font-size: xx-large;
+}
+
+button.disabled {
+    color: rgb(123, 140, 156);
+    cursor: default;
+}
+
+button.disabled:hover {
+    background-color: rgb(63, 72, 80);
+    cursor: default;
+}
+
+button.disabled:active {
+    background-color: #fc463d;
+}
+
+::ng-deep .mat-tooltip {
+    //tooltip
+    background-color: rgb(53, 64, 75, 0.9);
+}
+
+#jonc {
+    width: 122.5px;
+}
+
+.junctionRadiusSlider mat-card {
+    width: 216px;
+    padding: 0;
+    padding-left: 2px;
+}
+
+.TextSlider {
+    padding-top: 10px;
+    width: 183px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.non-tools {
+    padding-top: 80px;
+}
+
+mat-card-subtitle {
+    position: relative;
+    left: 150px;
+    bottom: 45px;
+    font-weight: bold;
+    color: white;
+    width: 50px;
+}
+
+.Slider {
+    padding: 0;
+    width: 216px;
+    vertical-align: top;
+    text-align: left;
+}
+
+mat-slider {
+    bottom: 15px;
+}
+
+mat-slider {
+    bottom: 15px;
+}

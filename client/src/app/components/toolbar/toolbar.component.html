@@ -1,0 +1,228 @@
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<div class="btns">
+    <div class="undoRedo">
+        <button
+            (click)="this.undo()"
+            id="undo"
+            [ngClass]="{ disabled: this.undoRedoManager.undoDisabled == true || this.undoRedoManager.isEmpty(this.undoRedoManager.undoStack) }"
+            [disabled]="this.undoRedoManager.undoDisabled == true || this.undoRedoManager.isEmpty(this.undoRedoManager.undoStack)"
+            matTooltip="Annuler (CTRL+Z)"
+            matTooltipPosition="after"
+            matTooltipShowDelay="250"
+        >
+            <fa-icon [icon]="faUndoAlt" size="lg"></fa-icon>
+        </button>
+        <button
+            (click)="this.redo()"
+            id="redo"
+            [ngClass]="{ disabled: this.undoRedoManager.redoDisabled == true || this.undoRedoManager.isEmpty(this.undoRedoManager.redoStack) }"
+            [disabled]="this.undoRedoManager.redoDisabled == true || this.undoRedoManager.isEmpty(this.undoRedoManager.redoStack)"
+            matTooltip="Refaire (CTRL+Shift+Z)"
+            matTooltipPosition="after"
+            matTooltipShowDelay="250"
+        >
+            <fa-icon [icon]="faRedoAlt" size="lg"></fa-icon>
+        </button>
+    </div>
+
+    <button
+        [ngClass]="{ active: this.toolManager.nonTools }"
+        (click)="this.toolManager.flipNonToolBool(); this.toolManager.showPalette = false"
+        matTooltip="Exporter, sauvegarder, creer un nouveau dessin carrousel de dessins et retour a la page principale"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faBars" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.pencilService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.pencilService); this.toolManager.nonTools = false; this.toolManager.updateSliderWidth()"
+        matTooltip="Outil crayon (C): Cliquer et glisser pour dessiner. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faPen" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.eraserService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.eraserService); this.toolManager.nonTools = false; this.toolManager.updateSliderWidth()"
+        matTooltip="Outil efface (E): Cliquer et glisser pour effacer. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faEraser" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.stampService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.stampService); this.toolManager.nonTools = false"
+        matTooltip="Outil étampe (D): Rotation de l'étampe de 15° avec la ROULETTE de la souris ou de 1° avec la touche ALT. 
+        NOTE: La palette de couleurs n'est pas disponible quand l'outil étampe est actif"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faStamp" size="lg"> </fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.airbrushService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.airbrushService); this.toolManager.nonTools = false"
+        matTooltip="Outil aérosol (A): Cliquer et glisser pour dessiner. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faSprayCan" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.textService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.textService); this.toolManager.nonTools = false"
+        style="font-family: 'Times New Roman'"
+        class="text-button"
+        matTooltip="Outil texte (T): Cliquez, glissez, et relâcher pour créer la zone de texte. Cliquez ici pour plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        T
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.lineService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.lineService); this.toolManager.nonTools = false; this.toolManager.updateSliderWidth()"
+        matTooltip="Outil ligne (L): Cliquer et glisser pour déssiner une ligne. Cliquer à la fin pour enchaîner
+les lignes, double-cliquer pour terminer la ligne. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faSlash" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.rectangleService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.rectangleService); this.toolManager.nonTools = false; this.toolManager.updateSliderWidth()"
+        matTooltip="Outil rectangle (1): Cliquer et glisser, et relâcher pour déssiner un rectangle. tenir (Shift) pour dessiner un carré. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faSquare" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.ellipseService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.ellipseService); this.toolManager.nonTools = false; this.toolManager.updateSliderWidth()"
+        matTooltip="Outil ellipse (2): Cliquer et glisser, et relâcher pour déssiner un ellipse. tenir (Shift) pour dessiner un cercle. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faCircle" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.polygonService && !this.toolManager.nonTools }"
+        (click)="
+            this.toolManager.setTool(this.toolManager.polygonService);
+            this.toolManager.polygonService.onButtonPress();
+            this.toolManager.nonTools = false;
+            this.toolManager.updateSliderWidth()
+        "
+        matTooltip="Outil polygone (3): Cliquer et glisser, et relâcher pour déssiner un polygone. Cliquez ici pour voir plus d'options"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+        id="poly"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true"
+            focusable="false"
+            style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg)"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 1024 897"
+        >
+            <path d="M768 897H256L0 449L256 0h512l256 449zM736 64H288L64 449l224 384h448l224-384z" />
+        </svg>
+    </button>
+
+    <button
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.rectangleSelection && !this.toolManager.nonTools }"
+        (click)="
+            this.toolManager.setTool(this.toolManager.rectangleSelection); this.toolManager.nonTools = false; this.toolManager.showPalette = false
+        "
+        matTooltip="Outil selection: Cliquez, glissez, et relâcher pour sélectionner (Rectangle et Ellipse). 
+        Cliquez pour créer des segments, revenir au point de départ pour créer la sélection (Lasso).
+        Annulez sélection (Delete). Cliquez-ici pour plus d'options."
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faVectorSquare" size="lg"></fa-icon>
+    </button>
+
+    <button
+        class=""
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.pipetteService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.pipetteService); this.toolManager.nonTools = false"
+        matTooltip="Outil pipette ( I ): CLIQUE-GAUCHE pour couleur principale et CLIQUE-DROIT pour couleur secondaire"
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faEyeDropper" size="lg"></fa-icon>
+    </button>
+
+    <button
+        [ngClass]="{
+            active:
+                this.toolManager.showPalette &&
+                !this.toolManager.nonTools &&
+                this.toolManager.currentTool != this.toolManager.rectangleSelection &&
+                this.toolManager.currentTool != this.toolManager.ellipseSelection &&
+                this.toolManager.currentTool != this.toolManager.lassoService &&
+                this.toolManager.currentTool != this.toolManager.stampService,
+            disabled:
+                this.toolManager.currentTool == this.toolManager.rectangleSelection ||
+                this.toolManager.currentTool == this.toolManager.ellipseSelection ||
+                this.toolManager.currentTool == this.toolManager.lassoService ||
+                this.toolManager.currentTool == this.toolManager.stampService
+        }"
+        [disabled]="
+            this.toolManager.currentTool == this.toolManager.rectangleSelection ||
+            this.toolManager.currentTool == this.toolManager.ellipseSelection ||
+            this.toolManager.currentTool == this.toolManager.lassoService ||
+            this.toolManager.currentTool == this.toolManager.stampService
+        "
+        (click)="this.toolManager.onPressPalette(); this.toolManager.nonTools = false"
+        matTooltip="Palette de couleur: Sélectionnez une couleur. CLIQUE-GAUCHE pour couleur principale et CLIQUE-DROIT pour couleur secondaire 
+(ceci s'applique pour les 10 couleurs utilisés précédemment). 
+Cliquez ici pour plus d'options."
+        matTooltipPosition="after"
+        matTooltipShowDelay="250"
+    >
+        <fa-icon [icon]="faPalette" size="lg"></fa-icon>
+    </button>
+
+    <button
+        class=""
+        [ngClass]="{ active: this.toolManager.currentTool == this.toolManager.paintBucketService && !this.toolManager.nonTools }"
+        (click)="this.toolManager.setTool(this.toolManager.paintBucketService)"
+        matTooltip="Outil sceau de peinture (B): CLIQUE-GAUCHE pour coloriage de pixels contigus et CLIQUE-DROIT pour coloriage de pixels non contigus"
+        matTooltipPosition="after"
+        matTooltipShowDelay="600"
+    >
+        <fa-icon [icon]="faFillDrip" size="lg"></fa-icon>
+    </button>
+</div>
+
+<button
+    [ngClass]="{ active: this.gridService.isGridVisible }"
+    (click)="this.toolManager.nonTools = false; this.gridService.showGrid()"
+    matTooltip="Aposer la grille (G). Appuyez (+) pour augmenter la taille des carrés de la grille au prochain multiple de 5. 
+    Appuyez ( - ) pour augmenter la taille des carrés de la grille au prochain multiple de 5."
+    matTooltipPosition="after"
+    matTooltipShowDelay="250"
+>
+    <fa-icon [icon]="faTh" size="lg"> </fa-icon>
+</button>
